@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>roulette</title>
+        <link rel="stylesheet" href="roulette.css">
+        <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script>
+          
+        var intervalid;
+        var start_flag = false;
+        var numbers = null;
+        var id_list = ['td1','td2','td3','td4','td5','td6','td7','td8','td9','td10','td11','td12','td13','td14','td15','td16'] ;
+        
+
+   
+        function start(){
+            if (start_flag===false){
+                $('#'+id_list[numbers]).removeClass('orange');
+                $('#'+id_list[numbers]).addClass('gray');   //オレンジ色を変える
+                
+                if (numbers!==null){
+                    id_list.splice(numbers,1);
+                }
+               
+                intervalid = setInterval(flash, 1);
+                start_flag = true;
+            }
+        }
+        
+        function flash(){
+            $('td').removeClass('red');
+            numbers = Math.floor(Math.random()*id_list.length);
+            // 1番に止まらない
+            $('#'+id_list[numbers]).addClass('red');
+        }
+        
+        
+   
+        function stop(){
+            if (start_flag===true) {
+                clearInterval(intervalid);
+                $('#'+id_list[numbers]).removeClass('red');
+                $('#'+id_list[numbers]).addClass('orange');
+                if (id_list.length === 0){
+                    start_flag = true;
+                } else {
+                    start_flag = false;
+                }
+            }
+        }
+   
+        function reset(){
+            id_list = ['td1','td2','td3','td4','td5','td6','td7','td8','td9','td10','td11','td12','td13','td14','td15','td16'] ;
+            $('td').removeClass();
+            clearInterval(intervalid);
+            start_flag = false;
+            numbers = null;
+          //元の状態にもどす
+          //id_list　表の色　ボタン
+        }
+      
+   
+        $(document).ready(
+            function(){
+            $('#startbutton').click(start);
+            $('#stopbutton').click(stop);
+            $('#resetbutton').click(reset);
+            });
+        
+        </script>
+    </head>
+    <body>
+        <table id="table">
+            <tr><td id="td1">1</td><td id="td2">2</td><td id="td3">3</td><td id="td4">4</td></tr>
+            <tr><td id="td5">5</td><td id="td6">6</td><td id="td7">7</td><td id="td8">8</td></tr>
+            <tr><td id="td9">9</td><td id="td10">10</td><td id="td11">11</td><td id="td12">12</td></tr>
+            <tr><td id="td13">13</td><td id="td14">14</td><td id="td15">15</td><td id="td16">16</td></tr>
+        </table>
+        <div id="button">
+        <button id="startbutton">スタート</button>
+        <button id="stopbutton">ストップ</button>
+        <button id="resetbutton">リセット</button>
+        </button>
+    </body>
+</html>
