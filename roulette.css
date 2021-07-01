@@ -1,0 +1,38 @@
+body {
+    margin-top: 15px;
+}
+
+#table {
+    border: solid 2px ;
+    margin: 0 auto;
+}
+
+td {
+    border: solid 1px;
+    padding: 5px;
+    text-align: center;
+}
+
+button {
+    margin: 5px;
+    padding:5px;
+    border: solid 1px;
+}
+
+#button {
+    margin-top: 10px;
+    text-align: center;
+    flex: 1;
+}
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.gray {
+    background-color: gray;
+}
